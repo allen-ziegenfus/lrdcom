@@ -63,8 +63,6 @@
   #end
 #end
 
-#set ($days_to_print = "day-2016-6-22,day-2016-6-23")
-
 #set ($default_col_span = 2)
 #set ($integer = 0)
 #set ($link_to_speakers_page = "/web/events2015/northamerica/speakers")
@@ -220,7 +218,7 @@
 
 <div class="" id="agendaWrapper">
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
-    #foreach ($day_to_print in $stringUtil.split($days_to_print))
+    #foreach ($day_to_print in $agenda.keySet())
       <span class="aui-w33 select-day select-day-$velocityCount class-toggle-carousel" data-target-class="day-$velocityCount" data-target-node="#wrapper" data-value="date-$velocityCount">
         #if ($velocityCount == 1)
           $day-1
@@ -233,7 +231,7 @@
     #end
   </div>
 
-  #foreach ($day_to_print in $stringUtil.split($days_to_print))
+  #foreach ($day_to_print in $agenda.keySet())
 
     #set ($day = {})
     #set ($day = $agenda.get("$day_to_print"))

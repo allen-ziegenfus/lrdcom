@@ -347,6 +347,11 @@
                 <span>$session_type:</span>
               #end
 
+
+              #if ($company_logo_uuid != "")
+                <div class="company-logo lazy-load"><img src="/documents/$company_logo_group_id/$company_logo_uuid"></div>
+              #end
+
               #if ($title != "")
                 <span class="trigger">$title</span><br>
               #end
@@ -354,9 +359,7 @@
               #if ($is_liferay_seven == "true" && $validator.isNotNull($is_liferay_seven))
                   <div class="liferay-seven-icon"></div>
               #end
-              #if ($company_logo_uuid != "")
-                <div class="company-logo lazy-load"><img src="/documents/$company_logo_group_id/$company_logo_uuid"></div>
-              #end
+       
 
               <div class="pop-up-content">
                 <span class="data">
@@ -585,15 +588,12 @@
 }
 
 #agendaWrapper .company-logo {
-   /* adjust up one line to center */
-   position: relative;
-   top: -1em;
+   margin-right: 20px;
    float: right;
-   width: 180px;
 }
 
 #agendaWrapper .company-logo img{
-    width: 100%;
+    width: 180px;
 }
 
 #agendaWrapper .togglers {
@@ -869,6 +869,14 @@
   .on-screen-bop div, .on-screen-bop.on-screen-boo-bop div  {
     position: initial;
   }
+  
+
+}
+
+@media all and (max-width: 720px) {
+  #agendaWrapper .company-logo {
+   float: none;
+}
 }
 </style>
 

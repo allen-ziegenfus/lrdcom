@@ -206,6 +206,8 @@
   #end
 #end
 
+#set( $tabWidth = 100 / $agenda.keySet().size() )
+
 ## day navigation
 <div class="" id="agendaWrapper">
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
@@ -293,6 +295,17 @@
               #set ($speaker_name = "")
               #set ($speaker_title = "")
             #end
+            
+            ## company logo
+            #if ($record.getFieldValue("company_logo") && $record.getFieldValue("company_logo") != "")
+              #set ($company_logo_json_object = $jsonFactoryUtil.createJSONObject($record.getFieldValue("company_logo")))
+              #set ($company_logo_group_id = $company_logo_json_object.getString("groupId"))
+              #set ($company_logo_uuid = $company_logo_json_object.getString("uuid"))
+            #else
+              #set ($company_logo_json_object = "")
+              #set ($company_logo_group_id = "")
+              #set ($company_logo_uuid = "")
+            #end
 
             #set ($title = $record.getFieldValue("title"))
             #set ($filter_categories = $record.getFieldValue("filter_categories"))
@@ -338,6 +351,9 @@
 
               #if ($is_liferay_seven == "true" && $validator.isNotNull($is_liferay_seven))
                   <div class="liferay-seven-icon"></div>
+              #end
+              #if ($company_logo_uuid != "")
+                <div class="company-logo lazy-load"><img src="/documents/$company_logo_group_id/$company_logo_uuid"></div>
               #end
 
               <div class="pop-up-content">
@@ -424,6 +440,8 @@
                   <img class="icon" src="/osb-community-theme/images/common/edit.png" alt="Edit DDL Record" title="Edit DDL Record">
                 </a>
               #end
+              
+              
             </td>
           #end
         </tr>
@@ -564,6 +582,18 @@
   color: #818183;
 }
 
+#agendaWrapper .company-logo {
+   /* adjust up one line to center */
+   position: relative;
+   top: -1em;
+   float: right;
+   width: 180px;
+}
+
+#agendaWrapper .company-logo img{
+    width: 100%;
+}
+
 #agendaWrapper .togglers {
   background: #FFF;
   border: 1px solid #CCC;
@@ -589,7 +619,7 @@
   text-align: center;
   text-decoration: none;
   vertical-align: top;
-  width: 33.33%;
+  width: $tabWidth%;
 }
 
 #agendaWrapper .trigger {

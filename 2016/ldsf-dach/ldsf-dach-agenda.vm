@@ -32,6 +32,9 @@
 ## get Locale objects for converting dates
 #set ($localeEn = $localeUtil.fromLanguageId("en_US")) 
 #set ($localePage = $localeUtil.fromLanguageId("de_DE")) 
+#set ($timeFormat = "h:mma")
+#set ($timeFormat = "HH:mm")
+
 
 <div class="categorySelectors category-toggle-container desktop-hidden">
   <div class="aui-toggler-header aui-toggler-header-collapsed toggle-header">
@@ -67,6 +70,10 @@
   #end
 #end
 
+#macro (strip_select_field $record $fieldname $result) 
+   ##set ($result = $record.getFieldValue($fieldname).replaceAll("\\[\\\"(.*)\\\"\\]" ,"\1"))
+#end
+
 #set ($default_col_span = 2)
 #set ($integer = 0)
 #set ($link_to_speakers_page = "/web/events2015/northamerica/speakers")
@@ -96,15 +103,6 @@
     #set ($start_time_hour = $stringUtil.replace($start_time_hour, "[", ""))
     #set ($start_time_hour = $stringUtil.replace($start_time_hour, "]", ""))
     #set ($start_time_hour = $stringUtil.replace($start_time_hour, '"', ''))
-    #set ($start_time_hour_int = $integer.parseInt($start_time_hour))
-    #if ($start_time_hour_int >= 12)
-      #set ($start_time_am_pm = "pm")
-      #if ($start_time_hour_int > 12)
-        #set ($start_time_hour_int = $start_time_hour_int - 12)
-      #end
-    #else
-      #set ($start_time_am_pm = "am")
-    #end
 
     #if ($start_time_hour.length() == 1)
       #set ($start_time_hour_sort = "0" + $start_time_hour)
@@ -120,23 +118,16 @@
       #set ($start_time_minutes = "0" + $start_time_minutes)
     #end
 
-    #set ($start_time_display = $start_time_hour_int + ":" + $start_time_minutes + $start_time_am_pm)
+	## lower case for am pm instead of ampm
+    #set ($startTimeDate = $dateTool.toDate("HH:mm" , $start_time_hour.concat(":").concat($start_time_minutes), $localeEn))
+    #set ($start_time_display = $dateTool.format($timeFormat,$startTimeDate,$localePage).toLowerCase())
+    
     #set ($start_time_sort = $start_time_hour_sort + $start_time_minutes)
 
     #set ($end_time_hour = $record.getFieldValue("end_time_hour"))
     #set ($end_time_hour = $stringUtil.replace($end_time_hour, "[", ""))
     #set ($end_time_hour = $stringUtil.replace($end_time_hour, "]", ""))
     #set ($end_time_hour = $stringUtil.replace($end_time_hour, '"', ''))
-
-    #set ($end_time_hour_int = $integer.parseInt($end_time_hour))
-    #if ($end_time_hour_int >= 12)
-      #set ($end_time_am_pm = "pm")
-      #if ($end_time_hour_int > 12)
-        #set ($end_time_hour_int = $end_time_hour_int - 12)
-      #end
-    #else
-      #set ($end_time_am_pm = "am")
-    #end
 
     #if ($end_time_hour.length() == 1)
       #set ($end_time_hour_sort = "0" + $end_time_hour)
@@ -152,7 +143,9 @@
       #set ($end_time_minutes = "0" + $end_time_minutes)
     #end
 
-    #set ($end_time_display = $end_time_hour_int + ":" +$end_time_minutes + $end_time_am_pm)
+	## lower case for am pm instead of ampm
+    #set ($endTimeDate = $dateTool.toDate("HH:mm" , $end_time_hour.concat(":").concat($end_time_minutes), $localeEn))
+    #set ($end_time_display = $dateTool.format($timeFormat,$endTimeDate,$localePage).toLowerCase())
     #set ($end_time_sort = $end_time_hour_sort + $end_time_minutes)
 
     #set ($room_uuid = $record.getFieldValue("room_uuid"))
@@ -216,10 +209,7 @@
   #end
 #end
 
-#set ($day-1 = "Sunday, November 15")
-#set ($day-2 = "Monday, November 16")
-#set ($day-3 = "Tuesday, November 17")
-
+## day navigation
 <div class="" id="agendaWrapper">
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
     #foreach ($day_to_print in $agenda.keySet())

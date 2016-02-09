@@ -630,7 +630,7 @@
   text-transform: uppercase;
 }
 
-#wrapper .agenda-1,
+#wrapper .agenda-2,
 #wrapper .agenda-3,
 #wrapper.class-toggle-carousel-day-1 .agenda-2,
 #wrapper.class-toggle-carousel-day-2 .agenda-1,
@@ -642,20 +642,20 @@
 }
 
 #wrapper #agendaWrapper,
-#wrapper #agendaWrapper .select-day-2,
+#wrapper #agendaWrapper .select-day-1,
 #wrapper.class-toggle-carousel-day-1 #agendaWrapper .select-day-1,
 #wrapper.class-toggle-carousel-day-3 #agendaWrapper .select-day-3 {
   font-weight: normal;
 }
 
-#wrapper #agendaWrapper .select-day-2, #wrapper.class-toggle-carousel-day-2 #agendaWrapper .select-day-2.class-toggle-carousel,
+#wrapper #agendaWrapper .select-day-1, #wrapper.class-toggle-carousel-day-1 #agendaWrapper .select-day-1.class-toggle-carousel,
 #wrapper.class-toggle-carousel-day-1 #agendaWrapper .select-day-1.class-toggle-carousel,
 #wrapper.class-toggle-carousel-day-3 #agendaWrapper .select-day-3.class-toggle-carousel {
   background: #178ACB;
   color: #FFF;
 }
 
-#wrapper #agendaWrapper .select-day-1,
+#wrapper #agendaWrapper .select-day-2,
 #wrapper #agendaWrapper .select-day-3,
 #wrapper.class-toggle-carousel-day-1 #agendaWrapper .select-day-2,
 #wrapper.class-toggle-carousel-day-2 #agendaWrapper .select-day-1,

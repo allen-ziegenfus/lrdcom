@@ -29,6 +29,10 @@
   }
 *#
 
+## get Locale objects for converting dates
+#set ($localeEn = $localeUtil.fromLanguageId("en_US")) 
+#set ($localePage = $localeUtil.fromLanguageId("de_DE")) 
+
 <div class="categorySelectors category-toggle-container desktop-hidden">
   <div class="aui-toggler-header aui-toggler-header-collapsed toggle-header">
     Filter by <span class="arrow"></span>
@@ -220,13 +224,10 @@
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
     #foreach ($day_to_print in $agenda.keySet())
       <span class="aui-w33 select-day select-day-$velocityCount class-toggle-carousel" data-target-class="day-$velocityCount" data-target-node="#wrapper" data-value="date-$velocityCount">
-        #if ($velocityCount == 1)
-          $day-1
-        #elseif ($velocityCount == 2)
-          $day-2
-        #elseif ($velocityCount == 3)
-          $day-3
-        #end
+        ## snip off "day-" from date, parse and reformat
+        #set ($agendaDate = $dateTool.toDate("yyyy-MM-dd" , $day_to_print.substring(4), $localeEn))
+        #set ($agendaDateFormatted = $dateTool.format("EEEE, dd. MMMM yyyy",$agendaDate,$localePage))
+        $agendaDateFormatted
       </span>
     #end
   </div>

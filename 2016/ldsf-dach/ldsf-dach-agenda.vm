@@ -34,6 +34,7 @@
 #set ($localePage = $localeUtil.fromLanguageId("de_DE")) 
 #set ($timeFormat = "h:mma")
 #set ($timeFormat = "HH:mm")
+#set ($agendaDateFormat = "EEEE, dd. MMMM yyyy")
 
 
 <div class="categorySelectors category-toggle-container desktop-hidden">
@@ -68,10 +69,6 @@
       #mark_as_extended5($end_time $next_row_end_time $next_row_start_time)
     #end
   #end
-#end
-
-#macro (strip_select_field $record $fieldname $result) 
-   ##set ($result = $record.getFieldValue($fieldname).replaceAll("\\[\\\"(.*)\\\"\\]" ,"\1"))
 #end
 
 #set ($default_col_span = 2)
@@ -216,7 +213,7 @@
       <span class="aui-w33 select-day select-day-$velocityCount class-toggle-carousel" data-target-class="day-$velocityCount" data-target-node="#wrapper" data-value="date-$velocityCount">
         ## snip off "day-" from date, parse and reformat
         #set ($agendaDate = $dateTool.toDate("yyyy-MM-dd" , $day_to_print.substring(4), $localeEn))
-        #set ($agendaDateFormatted = $dateTool.format("EEEE, dd. MMMM yyyy",$agendaDate,$localePage))
+        #set ($agendaDateFormatted = $dateTool.format($agendaDateFormat,$agendaDate,$localePage))
         $agendaDateFormatted
       </span>
     #end
@@ -653,6 +650,9 @@
   display: none;
 }
 
+.agenda-table {
+  width: 100%;
+}
 .agenda-table.sticky-nav {
   margin-top: 60px;
 }

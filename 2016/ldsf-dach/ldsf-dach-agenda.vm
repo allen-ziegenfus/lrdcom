@@ -346,7 +346,9 @@
               #if ($session_type != "blank" && $session_type != "")
                 <span>$session_type:</span>
               #end
-
+                <div class="mobile-only">
+                  $start_time_display - $row_end_time_display
+               </div>
 
               #if ($company_logo_uuid != "")
                 <div class="company-logo lazy-load"><img src="/documents/$company_logo_group_id/$company_logo_uuid"></div>
@@ -873,10 +875,33 @@
 
 }
 
+
+@media all and (min-width: 720px) {
+   .mobile-hidden {
+   		display: block;
+   }
+    .mobile-only {
+        display: none;
+    }
+}
 @media all and (max-width: 720px) {
   #agendaWrapper .company-logo {
    float: none;
 }
+
+ .mobile-only {
+        display: block;
+    }
+    
+  .mobile-hidden {
+   		display: none;
+   }
+    
+    
+  ##have to be very specific otherwise conflicts with filter rules
+  #wrapper #agendaWrapper td.first-col {
+     display: none;
+  }
 }
 </style>
 

@@ -212,6 +212,7 @@
 #set( $tabWidth = 100 / $agenda.keySet().size() )
 
 ## day navigation
+<div id="agenda">
 <div class="" id="agendaWrapper">
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
     #foreach ($day_to_print in $agenda.keySet())
@@ -469,7 +470,7 @@
     <a class="category" data-target-class="ui" data-selected="false">UI & UX</a>
   </div>
 </div>
-
+</div>
 <style>
 #agendaTabs .select-day {
   height: 100%;

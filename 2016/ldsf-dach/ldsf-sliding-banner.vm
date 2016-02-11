@@ -9,9 +9,6 @@ a.btn {
 a.btn:hover {
   background-color: #0067cc;
 }
-.special-font {
-	font-weight: normal;
-}
 
 .content .span-left {
 	background: url($logo_image.data);
@@ -65,9 +62,6 @@ a.btn:hover {
     position: absolute;
     left: 38%;
     top: 15%;
-	##left: 38%;
-	##position: relative;
-	##top: 200px;
 	transition: all 1s ease-in-out;
 	z-index: 3;
 }
@@ -97,30 +91,43 @@ a.btn:hover {
     width: 25%;
 }
 
-@media(max-width: 760px) {
-	.register-button {
-		display: none;
-	}
+## fit event logo images from 320px - 600px screens by reducing everything in half...
+@media screen and (max-width: 600px) {
+#intro .content, #intro .content.slided {
+	left: 5%;
+}
+#introCover.start, #introCover.slided {   
+    width: 25%;
+}
+.content .span-left {
+	width: 60px;
+}
+.content .event-logo-text {
+	width: 200px;
+}
+.content .span-left, .content .event-logo-text {
+	height: 60px;
 }
 
-@media(max-width: 590px) {
-	.content .span-left {
-		background-size: contain;
-		margin-top: 20px;
-		height: 82px;
-		width: 60px;
+#introCover {
+    border: 400px solid $banner_color.data;
+    border-right-color:  transparent;	
+	border-left-width: 0;
+	border-bottom-width: 0;	
 	}
+	
+	.content .event-subtitle {
+	font-size: 12px;
 }
 
-@media(max-width: 420px) {
-	.content .span-left {
-		height: 66px;
-		width: 48px;
-	}
-	.content .span-right {
-		margin-top: 25px;
-	}
+a.btn {
+  padding: 10px;
+  font-size: 12px;
+
 }
+	
+}
+
 </style>
 <div id="intro">
 	<div class="border">
@@ -135,10 +142,9 @@ a.btn:hover {
 							<span style="line-height: 1.4;">$event_text_line.getData()</span> <br/>
 						#end
 					</div>
-			<div class="register-button">
-				<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a></div>
-		</div>
-
+					<div class="register-button">
+						<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a></div>
+					</div>
 			</div>
 		</div>
 	</div>
@@ -156,7 +162,7 @@ AUI().ready(
 		## slide in banner cover 2 seconds on load
 		A.on('load', function() {
 			## only slide if desktop/ tablet
-			if (window.innerWidth > 840) {
+			//if (window.innerWidth > 600) {
 				window.setTimeout(function () {
 					var introCover = document.getElementById("introCover");
 					if (introCover != null) {
@@ -164,7 +170,7 @@ AUI().ready(
 					}
 					bannerContent.className += " slided";
 				}, 2000 );
-			}
+			//}
 		});
 	}
 );

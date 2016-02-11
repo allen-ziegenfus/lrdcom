@@ -4,12 +4,14 @@
 }
 
 .content .span-left {
-	background: url('/documents/47511614/49230629/lightbulb.png/ccbd7d36-7536-44f1-8c69-55cc585f7765');
+	background: url('/documents/67510365/68382969/16+LDSF+Logo/921bc930-00ff-4833-ba1b-5926dbbd844a');
+	background-repeat: no-repeat;
+	background-size: 100%;
 	color: #FFF;
 	display: inline-block;
 	height: 126px;
 	vertical-align: top;
-	width: 90px;
+	width: 400px;
 }
 
 .content .span-right {
@@ -57,104 +59,52 @@
 #intro {
 	background: url($background_image.data) no-repeat center bottom;
 	background-size: cover;
+	overflow: hidden;
+    position: relative;
 }
 
 #intro .content {
-	left: 38%;
-	position: relative;
-	top: 200px;
+    position: absolute;
+    left: 38%;
+    top: 15%;
+	##left: 38%;
+	##position: relative;
+	##top: 200px;
 	transition: all 1s ease-in-out;
 	z-index: 3;
 }
 
+#intro .content.slided {
+	left: 15%;
+}
 #intro .content img {
 	height: 190px;
 }
 
-#introCover, #introCover:after {
-	background-color: #0066AA;
-	position: relative;
-	width: 100%;
-	z-index: 2;
-}
-
 #introCover {
-	left: 0;
-	transition: all 1s ease-in-out;
+    transition: width 1s ease-in-out;
+	height: 0;
+	## 800px here to avoid multiple edits in individual border widths 
+	## this is one huge border that when blown up shows a 45 degree angle
+	border: 800px solid #f3f3f3;
+	border-right-color:  transparent;	
+	border-left-width: 0;
+	border-bottom-width: 0;	
+
 }
-
-#introCover:after {
-	content: "";
-	display: block;
-	top: -250px;
-	-ms-transform: skew(45deg);
-	-webkit-transform: skew(-45deg);
-	-moz-transform: skew(-45deg);
-	-o-transform: skew(-45deg);
-	transform: skew(-45deg);
-	transform-origin: bottom;
+#introCover.start {
+	width: 100%;
 }
-
-.safari #introCover::after {
-    width: 143%;
-} 
-
-#intro {
-	overflow: hidden;
-}
-
-#intro, #introCover, #introCover:after {
-	height: 800px;
-}
-
-.ie8 #introCover, .ie9 #introCover {
-	left: -1200px;
-}
-
-.ie8 #intro .content, .ie9 #intro .content {
-	left: 800px;
-}
-
-@media(max-width:1360px) {
-	#intro .content {
-		left: 34%;
-	}
-}
-
-@media(max-width:1040px) {
-	#intro .content {
-		left: 26%;
-	}
+#introCover.slided {   
+    width: 25%;
 }
 
 @media(max-width: 760px) {
 	.register-button {
 		display: none;
 	}
-
-	#introCover:after {
-		top: -180px;
-	}
 }
 
-@media(max-width: 840px) {
-	#intro, #introCover {
-		height: 548px;;
-	}
-
-	#introCover:after {
-		height: 555px;
-	}
-
-	#introCover {
-		left: -60%;
-	}
-
-	#intro .content {
-		left: 70%;
-		top: 160px;
-	}
-}
 
 @media(max-width: 590px) {
 	.content .span-left {
@@ -170,20 +120,6 @@
 
 	.content .event-title.bottom {
 		font-size: 28px;
-	}
-
-	#intro, #introCover {
-		height: 378px;;
-	}
-
-	#introCover:after {
-		height: 385px;
-		top: -160px;
-	}
-
-	#intro .content {
-		left: 65%;
-		top: 100px;
 	}
 }
 
@@ -204,27 +140,12 @@
 	.content .span-right {
 		margin-top: 25px;
 	}
-
-	#introCover:after {
-		left: -90px;
-		width: 130%;
-	}
-
-	#introCover{
-		left: -85%;
-		height: 380px;
-	}
-
-	#intro .content {
-		left: 88%;
-		top: 60px;
-	}
 }
 </style>
 <div id="intro">
 	<div class="border">
-		<div id="introCover">
-			<div class="content fade">
+		<div id="introCover" class="start">
+			<div id="bannerContent" class="content fade">
 				$content.data
 			</div>
 		</div>
@@ -234,46 +155,25 @@
 AUI().ready(
 	'aui-base',
 	function(A) {
-		var fadeIn = function(node) {
-			node.addClass('in');
-		};
+		## fade in banner content
+		var bannerContent = document.getElementById("bannerContent");
+		if (bannerContent != null) {
+			bannerContent.className += " in";
+		}
 
-		var animateDistance = function() {
-			var screenWidth = window.innerWidth;
-			
-			return (3/4 * screenWidth);
-		};
-
-		A.on(
-			'load',
-			function() {
-				var html = A.one('html');
-
-				fadeIn(A.one('.content.fade'));
-
-				if (!html.hasClass('ie8') && !html.hasClass('ie9') && window.innerWidth > 840) {
-					window.setTimeout(
-						function () {
-							var contentSlider = A.one('#intro .content');
-							var slider = A.one('#introCover');
-
-							fadeInNodes = A.all('#intro .fade');
-
-							fadeInNodes.each(
-								function(node) {
-									fadeIn(node);
-								}
-							);
-
-							slider.setStyle('left', '-' + animateDistance() + 'px');
-
-							contentSlider.setStyle('left', (animateDistance() + (contentSlider.getX()/2)) + 'px');
-						},
-						2000
-					);
-				}
+		## slide in banner cover 2 seconds on load
+		A.on('load', function() {
+			## only slide if desktop/ tablet
+			if (window.innerWidth > 840) {
+				window.setTimeout(function () {
+					var introCover = document.getElementById("introCover");
+					if (introCover != null) {
+						introCover.className += " slided";
+					}
+					bannerContent.className += " slided";
+				}, 2000 );
 			}
-		);
+		});
 	}
 );
 </script>

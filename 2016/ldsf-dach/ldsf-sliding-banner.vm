@@ -1,46 +1,44 @@
 <style type="text/css">
+
+a.btn {
+  color: #FFF;
+  padding: 15px;
+  font-size: 16px;
+  background-color: #0067aa;
+}
+a.btn:hover {
+  background-color: #0067cc;
+}
 .special-font {
 	font-weight: normal;
 }
 
 .content .span-left {
-	background: url('/documents/67510365/68382969/16+LDSF+Logo/921bc930-00ff-4833-ba1b-5926dbbd844a');
+	background: url($logo_image.data);
+	display: inline-block;
+	vertical-align: top;
+	width: 125px;
+}
+.content .event-logo-text {
+ 	background: url($logo_image.logo_text_image.data);
+	width: 400px;
+}
+.content .span-left, .content .event-logo-text {
 	background-repeat: no-repeat;
 	background-size: 100%;
-	color: #FFF;
-	display: inline-block;
-	height: 126px;
-	vertical-align: top;
-	width: 400px;
+	height: 125px;
 }
 
 .content .span-right {
-	color: #FFF;
+	color: #4d4d4f;
 	display: inline-block;
 	margin-top: 5px;
     max-width: 340px;
 	text-align: left;
 }
 
-.content .event-title {
-	text-transform: uppercase;
-}
-
-.content .event-title.top {
-	font-size: 42px;
-}
-
-.content .event-title.bottom {
-	font-size: 36px;
-	margin-top: -10px;
-}
-
 .content .event-subtitle {
-	font-size: 16px;
-}
-
-.content .event-subtitle.top {
-	margin-top: 20px;
+	font-size: 18px;
 }
 
 .content .register-button {
@@ -86,7 +84,7 @@
 	height: 0;
 	## 800px here to avoid multiple edits in individual border widths 
 	## this is one huge border that when blown up shows a 45 degree angle
-	border: 800px solid #f3f3f3;
+	border: 800px solid $banner_color.data;
 	border-right-color:  transparent;	
 	border-left-width: 0;
 	border-bottom-width: 0;	
@@ -105,21 +103,12 @@
 	}
 }
 
-
 @media(max-width: 590px) {
 	.content .span-left {
 		background-size: contain;
 		margin-top: 20px;
 		height: 82px;
 		width: 60px;
-	}
-
-	.content .event-title.top {
-		font-size: 36px;
-	}
-
-	.content .event-title.bottom {
-		font-size: 28px;
 	}
 }
 
@@ -128,15 +117,6 @@
 		height: 66px;
 		width: 48px;
 	}
-
-	.content .event-title.top {
-		font-size: 25px;
-	}
-
-	.content .event-title.bottom {
-		font-size: 22px;
-	}
-
 	.content .span-right {
 		margin-top: 25px;
 	}
@@ -146,7 +126,19 @@
 	<div class="border">
 		<div id="introCover" class="start">
 			<div id="bannerContent" class="content fade">
-				$content.data
+				<div class="span-left">
+				</div>
+				<div class="span-right">
+					<div class="event-logo-text"></div>
+					<div class="event-subtitle top">
+						#foreach($event_text_line in $event_text.getSiblings())
+							<span style="line-height: 1.4;">$event_text_line.getData()</span> <br/>
+						#end
+					</div>
+			<div class="register-button">
+				<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a></div>
+		</div>
+
 			</div>
 		</div>
 	</div>

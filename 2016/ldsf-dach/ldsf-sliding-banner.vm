@@ -17,31 +17,17 @@
     #set ($void = $link_tree.get($link_order).put("link_id", $link_id))
 #end 
 
-<nav class="scroll-navigation" id="navigation">
-	<ul>
-#foreach ($link_order in $link_tree.keySet())
-  #set ($link_name = $link_tree.get($link_order).get("link_name"))
-  #set ($link_href = $link_tree.get($link_order).get("link_href"))
-  #set ($link_id = $link_tree.get($link_order).get("link_id"))
-  ##<div> $link_name: $link_href: $link_id: $link_order</div>
 
-		<li class="nav-item">
-			<a class="animate-scroll" href="$link_href" onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">$link_name</a>
-		</li>
-
-#end
-	</ul>
-</nav>
 
 <style type="text/css">
-nav#navigation {
+.scroll-navigation {
     display: block;
     float: left;
     left: 0;
     margin-left: 40px;
     position: absolute;
 }
-nav#navigation a {
+#navigation.scroll-navigation a {
     color: #4d4d4f;
     font-weight: lighter;
     padding: 20px 10px;
@@ -196,73 +182,50 @@ nav#navigation a {
         display: block !important;
     }
 }</style>
-<p id="startHomeFixedNav" style="text-align: center;">
-	&nbsp;</p>
-<nav class="aui-helper-hidden events-nav primary-background desktop-only fade">
-	<a class="image-link animate-scroll" href="#wrapper"><img class="nav-icon" src="/documents/47511614/49384334/LPSF-small.svg/aae2faef-d8b1-4de0-bf0d-cacda3ff0f58" /></a>
-	<ul>
-		<li>
-			<a class="animate-scroll" href="#das-event" id="navAbout">Das Event</a></li>
-		<li>
-			<a class="animate-scroll" href="#referenten" id="navSpeakers">Referenten</a></li>
-		<li>
-			<a class="animate-scroll" href="#agenda" id="navAgenda">Agenda</a></li>
-		<li>
-			<a class="animate-scroll" href="#experten" id="navExperts">Experten</a></li>
-		<li>
-			<a class="animate-scroll" href="#logistik" id="navLogistics">Logistik</a></li>
-		<li>
-			<a class="animate-scroll" href="#sponsors" id="navSponsors">Sponsoren</a></li>
-	</ul>
+
+<nav class="scroll-navigation" id="navigation">
+<ul>
+#foreach ($link_order in $link_tree.keySet())
+#set ($link_name = $link_tree.get($link_order).get("link_name"))
+#set ($link_href = $link_tree.get($link_order).get("link_href"))
+#set ($link_id = $link_tree.get($link_order).get("link_id"))
+##<div> $link_name: $link_href: $link_id: $link_order</div>
+
+	<li class="nav-item">
+		<a class="animate-scroll" id="$link_id" href="$link_href" onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">$link_name</a>
+	</li>
+
+#end
+</ul>
 </nav>
-<nav class="aui-helper-hidden events-nav desktop-only fade register aui-helper-hidden">
-	<a class="register-btn btn" href="http://discover.liferay.com/anmeldung-lpsf-2015" target="_blank">Jetzt anmelden!</a></nav>
-<nav class="responsive-only">
-	<div class="class-toggle" data-target-node="#responsiveEventsNav" id="navigationToggle">
-		&nbsp;</div>
-	<div class="register-button">
-		<a class="btn" href="http://discover.liferay.com/anmeldung-lpsf-2015">Jetzt anmelden!</a></div>
-	<div class="responsive-content-height" id="responsiveEventsNav">
-		<ul>
-			<li>
-				<a class="animate-scroll" href="#das-event" id="navAbout">Das Event</a></li>
-			<li>
-				<a class="animate-scroll" href="#referenten" id="navSpeakers">Referenten</a></li>
-			<li>
-				<a class="animate-scroll" href="#agenda" id="navAgenda">Agenda</a></li>
-			<li>
-				<a class="animate-scroll" href="#experten" id="navExperts">Experten</a></li>
-			<li>
-				<a class="animate-scroll" href="#logistik" id="navLogistics">Logistik</a></li>
-			<li>
-				<a class="animate-scroll" href="#sponsors" id="navSponsors">Sponsoren</a></li>
-		</ul>
-	</div>
-</nav>
+
+
+
 <script>
     AUI().use(
         'node',
         function(A) {
             var WIN = A.getWin();
-            var fixedNav = A.all('.events-nav');
+            var fixedNav = A.all('#navigation.scroll-navigation');
 
             var displayFixedNav = function() {
+               
                 var currentScrollPos = WIN.get('docScrollY');
-                var startPosition = A.one('#startHomeFixedNav').getY();
+        
                 var fadeInPosition = A.one('#aboutStartNav').getY();
                 var topNavPosition = A.one('#navigation').getY();
 
-                if (currentScrollPos <= topNavPosition) {
-                    fixedNav.addClass('aui-helper-hidden');
-                }
-                else if (currentScrollPos + 5 >= fadeInPosition) {
+             
+                if (currentScrollPos + 5 >= fadeInPosition) {
                     fixedNav.addClass('in');
+                    fixedNav.addClass("events-nav");
                 } else {
                     fixedNav.removeClass('in');
+                    fixedNav.removeClass("events-nav");
                     fixedNav.removeClass('aui-helper-hidden');
                 }
 
-                navActiveItem(currentScrollPos);
+               // navActiveItem(currentScrollPos);
             };
 
             var navActiveItem = function (scrollPos) {

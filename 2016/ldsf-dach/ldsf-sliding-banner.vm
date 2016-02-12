@@ -41,121 +41,105 @@ nav#navigation {
     margin-left: 40px;
     position: absolute;
 }
-
-
 nav#navigation a {
     color: #4d4d4f;
     font-weight: lighter;
     padding: 20px 10px;
 }
-
 .events-nav {
-        background-color: #06A;
-        margin-top: 40px;
-        float: left;
-        left: 0;
-        overflow: hidden;
-        position: fixed;
-        top: 0;
-        z-index: 9999;
-    }
-
-    .events-nav.register {
-        overflow: visible;
-    }
-
-    .btn.register-btn {
-        padding: 10px 20px 15px;
-        position: fixed;
-        right: 0px;
-        top: 40px;
-        width: auto;
-    }
-
-    .events-nav li, .events-nav .image-link {
-        display: inline-block;
-    }
-
-    .events-nav .image-link {
-        margin: 5px 20px 5px 25px;
-        padding: 0;
-        width: 90px
-    }
-
-    .events-nav ul {
-        display: inline-block;
-        position: relative;
-        margin: 1em 20px 1em 0;
-        vertical-align: top;
-    }
-
-    .events-nav ul li a:hover {
-        background-color: #F45B49;
-    }
-
-    .events-nav ul li a.active {
-        font-weight: normal;
-    }
-
-    .events-nav a {
-        color: #FFF;
-        font-size: 1.2em;
-        padding: 5px 15px;
-        position: relative;
-        width: 40px;
-        z-index: 3;
-    }
-
-    .events-nav a:hover {
-        cursor: pointer;
-    }
-
-    .nav-icon {
-        height: 28px;
-        position: relative;
-        top: 10px;
-    }
-
-    .right-fixed {
-        float: right;
-        padding: 20px 15px;
-    }
-
-    #navAbout:after {
-        left: 14%;
-        width: 120%;
-    }
-
-.safari #navAbout:after {
-left: -20px;
+    background-color: #06A;
+    margin-top: 40px;
+    float: left;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
 }
-
-    #navAgenda:after, #navExperts:after, #navLogistics:after, #navSponsors:after {
-        left: 30%;
-    }
-
-    .safari #navAgenda:after, .safari #navExperts:after, .safari #navLogistics:after, .safari #navSponsors:after {
-        left: 0px;
-    }
-
-    #navSpeakers:after {
-        left: 25%;
-    }
-
-    .safari #navSpeakers:after {
-        left: 0px;
-    }
-
-    #startHomeFixedNav {
-        height: 0;
-        margin: 0;
-    }
-
+.events-nav.register {
+    overflow: visible;
+}
+.btn.register-btn {
+    padding: 10px 20px 15px;
+    position: fixed;
+    right: 0px;
+    top: 40px;
+    width: auto;
+}
+.events-nav li,
+.events-nav .image-link {
+    display: inline-block;
+}
+.events-nav .image-link {
+    margin: 5px 20px 5px 25px;
+    padding: 0;
+    width: 90px
+}
+.events-nav ul {
+    display: inline-block;
+    position: relative;
+    margin: 1em 20px 1em 0;
+    vertical-align: top;
+}
+.events-nav ul li a:hover {
+    background-color: #F45B49;
+}
+.events-nav ul li a.active {
+    font-weight: normal;
+}
+.events-nav a {
+    color: #FFF;
+    font-size: 1.2em;
+    padding: 5px 15px;
+    position: relative;
+    width: 40px;
+    z-index: 3;
+}
+.events-nav a:hover {
+    cursor: pointer;
+}
+.nav-icon {
+    height: 28px;
+    position: relative;
+    top: 10px;
+}
+.right-fixed {
+    float: right;
+    padding: 20px 15px;
+}
+#navAbout:after {
+    left: 14%;
+    width: 120%;
+}
+.safari #navAbout:after {
+    left: -20px;
+}
+#navAgenda:after,
+#navExperts:after,
+#navLogistics:after,
+#navSponsors:after {
+    left: 30%;
+}
+.safari #navAgenda:after,
+.safari #navExperts:after,
+.safari #navLogistics:after,
+.safari #navSponsors:after {
+    left: 0px;
+}
+#navSpeakers:after {
+    left: 25%;
+}
+.safari #navSpeakers:after {
+    left: 0px;
+}
+#startHomeFixedNav {
+    height: 0;
+    margin: 0;
+}
 @media (max-width: 770px) {
     nav.desktop-only {
         display: none;
     }
-
     nav.responsive-only {
         background-color: #06a;
         height: 60px;
@@ -164,7 +148,6 @@ left: -20px;
         width: 100%;
         z-index: 5;
     }
-
     nav.responsive-only #navigationToggle {
         background-image: url(/documents/14/48124953/hamburger.png);
         cursor: pointer;
@@ -175,7 +158,6 @@ left: -20px;
         top: 20px;
         width: 21px;
     }
-
     nav.responsive-only .register-button {
         bottom: -17px;
         display: block;
@@ -183,15 +165,12 @@ left: -20px;
         position: relative;
         right: 20px;
     }
-
     nav.responsive-only .register-button a {
         padding: 8px 25px;
     }
-
     nav#navigation {
         display: none;
     }
-
     #responsiveEventsNav {
         background-color: #DBE0E4;
         display: none;
@@ -199,25 +178,20 @@ left: -20px;
         top: 35px;
         width: 100%;
     }
-
     #responsiveEventsNav.class-toggle-active {
         display: block;
     }
-
     #responsiveEventsNav ul {
         list-style: none;
         margin: 0;
     }
-
     #responsiveEventsNav ul li {
         padding: 10px 5%;
         font-size: 18px;
     }
-
     #responsiveEventsNav ul a {
         color: #FFF;
     }
-
     .responsive-only {
         display: block !important;
     }
@@ -432,6 +406,7 @@ a.btn:hover {
 #intro {
 	background: url($background_image.data) no-repeat center bottom;
 	##background-size: cover;
+	## cover leads to funny bild things on mobile (heads cut off..)
 	background-size: 115%;
 	overflow: hidden;
     position: relative;

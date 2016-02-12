@@ -431,7 +431,8 @@ a.btn:hover {
 
 #intro {
 	background: url($background_image.data) no-repeat center bottom;
-	background-size: cover;
+	##background-size: cover;
+	background-size: 115%;
 	overflow: hidden;
     position: relative;
 }
@@ -439,13 +440,13 @@ a.btn:hover {
 #intro .content {
     position: absolute;
     left: 38%;
-    top: 15%;
+    top: 25%;
 	transition: left 1s ease-in-out, opacity 1s ease-in-out;
 	z-index: 3;
 }
 
 #intro .content.slided {
-	left: 15%;
+	left: 18%;
 }
 #intro .content img {
 	height: 190px;

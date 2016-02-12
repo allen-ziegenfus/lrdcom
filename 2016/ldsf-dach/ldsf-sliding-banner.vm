@@ -1,9 +1,37 @@
 #set ($ddl_records_local_service = $serviceLocator.findService("com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalService"))
-#set ($records = $ddl_records_local_service.getRecords(69701505))
-#foreach ($record in $records)
-    #set ($link_name = $record.getFieldValue("link_name"))
-    <div> $link_name </div>
+#set ($link_records = $ddl_records_local_service.getRecords(69701505))
+#set ($link_tree = $portal.getClass().forName("java.util.TreeMap").newInstance())
+
+## fetch link records and sort in tree map... would be better to do in ddl query but does not seem to work with velocity
+#foreach ($link_record in $link_records)
+    #set ($link_name = $link_record.getFieldValue("link_name"))
+    #set ($link_href = $link_record.getFieldValue("link_href"))
+    #set ($link_id = $link_record.getFieldValue("link_id"))
+    #set ($link_order = $link_record.getFieldValue("link_order"))
+    ##<div> $link_name: $link_href: $link_id: $link_order</div>
+    #if (!$link_tree.get($link_order))
+      #set ($void = $link_tree.put($link_order, $portal.getClass().forName("java.util.TreeMap").newInstance()))
+    #end
+    #set ($void = $link_tree.get($link_order).put("link_name", $link_name))
+    #set ($void = $link_tree.get($link_order).put("link_href", $link_href))
+    #set ($void = $link_tree.get($link_order).put("link_id", $link_id))
 #end 
+
+<nav class="scroll-navigation" id="navigation">
+	<ul>
+#foreach ($link_order in $link_tree.keySet())
+  #set ($link_name = $link_tree.get($link_order).get("link_name"))
+  #set ($link_href = $link_tree.get($link_order).get("link_href"))
+  #set ($link_id = $link_tree.get($link_order).get("link_id"))
+  ##<div> $link_name: $link_href: $link_id: $link_order</div>
+
+		<li class="nav-item">
+			<a class="animate-scroll" href="$link_href" onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">$link_name</a>
+		</li>
+
+#end
+	</ul>
+</nav>
 
 <style type="text/css">
 nav#navigation {
@@ -16,7 +44,7 @@ nav#navigation {
 
 
 nav#navigation a {
-    color: #FFF;
+    color: #4d4d4f;
     font-weight: lighter;
     padding: 20px 10px;
 }
@@ -412,7 +440,7 @@ a.btn:hover {
     position: absolute;
     left: 38%;
     top: 15%;
-	transition: all 1s ease-in-out;
+	transition: left 1s ease-in-out, opacity 1s ease-in-out;
 	z-index: 3;
 }
 
@@ -511,16 +539,13 @@ AUI().ready(
 
 		## slide in banner cover 2 seconds on load
 		A.on('load', function() {
-			## only slide if desktop/ tablet
-			//if (window.innerWidth > 600) {
 				window.setTimeout(function () {
 					var introCover = document.getElementById("introCover");
 					if (introCover != null) {
 						introCover.className += " slided";
 					}
 					bannerContent.className += " slided";
-				}, 2000 );
-			//}
+				}, 1500 );
 		});
 	}
 );

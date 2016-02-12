@@ -72,7 +72,7 @@
     "companyId": 1,
     "creatorUserId": 1395288,
     "description": "",
-    "friendlyURL": "\/events2015",
+    "friendlyURL": "\/events2015",	
     "groupId": 47511614,
     "liveGroupId": 0,
     "name": "Events 2015",

@@ -17,7 +17,8 @@
     #set ($void = $link_tree.get($link_order).put("link_id", $link_id))
 #end 
 
-
+#set ($button_color = "#0067aa")
+#set ($text_color = "#4d4d4f")
 
 <style type="text/css">
 .scroll-navigation {
@@ -28,12 +29,13 @@
     position: absolute;
 }
 #navigation.scroll-navigation a {
-    color: #4d4d4f;
+    color: $text_color;
     font-weight: lighter;
     padding: 20px 10px;
 }
 .events-nav {
-    background-color: #06A;
+    background-color: #d5d5d0;
+    margin-left: 0px;
     margin-top: 40px;
     float: left;
     left: 0;
@@ -67,22 +69,30 @@
     margin: 1em 20px 1em 0;
     vertical-align: top;
 }
-.events-nav ul li a:hover {
-    background-color: #F45B49;
+#navigation.events-nav li a{
+   margin: 0;
+   padding: 7px 5px;
+}
+
+#navigation.events-nav ul li:hover {
+    background-color: $button_color;
+    transform: skew(20deg);
+    color: #FFF;
+    
+}
+#navigation.events-nav ul li a:hover {
+    color: #FFF;
+    transform: skew(-20deg);
+    cursor: pointer;
 }
 .events-nav ul li a.active {
     font-weight: normal;
 }
-.events-nav a {
-    color: #FFF;
+#navigation.events-nav a {
     font-size: 1.2em;
     padding: 5px 15px;
     position: relative;
-    width: 40px;
     z-index: 3;
-}
-.events-nav a:hover {
-    cursor: pointer;
 }
 .nav-icon {
     height: 28px;
@@ -92,31 +102,6 @@
 .right-fixed {
     float: right;
     padding: 20px 15px;
-}
-#navAbout:after {
-    left: 14%;
-    width: 120%;
-}
-.safari #navAbout:after {
-    left: -20px;
-}
-#navAgenda:after,
-#navExperts:after,
-#navLogistics:after,
-#navSponsors:after {
-    left: 30%;
-}
-.safari #navAgenda:after,
-.safari #navExperts:after,
-.safari #navLogistics:after,
-.safari #navSponsors:after {
-    left: 0px;
-}
-#navSpeakers:after {
-    left: 25%;
-}
-.safari #navSpeakers:after {
-    left: 0px;
 }
 #startHomeFixedNav {
     height: 0;
@@ -319,7 +304,7 @@ a.btn {
   color: #FFF;
   padding: 15px;
   font-size: 16px;
-  background-color: #0067aa;
+  background-color: $button_color;
 }
 a.btn:hover {
   background-color: #0067cc;
@@ -342,7 +327,7 @@ a.btn:hover {
 }
 
 .content .span-right {
-	color: #4d4d4f;
+	color: $text_color;
 	display: inline-block;
 	margin-top: 5px;
     max-width: 340px;

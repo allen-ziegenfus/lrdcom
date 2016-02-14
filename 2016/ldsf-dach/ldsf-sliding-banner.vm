@@ -54,7 +54,7 @@
     top: 40px;
     width: auto;
 }
-.events-nav li,
+
 .events-nav .image-link {
     display: inline-block;
 }
@@ -63,23 +63,26 @@
     padding: 0;
     width: 90px
 }
-.events-nav ul {
-    display: inline-block;
-    position: relative;
-    margin: 1em 20px 1em 0;
-    vertical-align: top;
+#navigation.events-nav ul {
+    margin: 0px 10px 0px 10px;
+}
+
+#navigation.events-nav li {
+   margin: 0;
+   display: inline-block;
 }
 #navigation.events-nav li a{
    margin: 0;
-   padding: 7px 5px;
+   padding: 15px;
 }
 
+##hover as parallelogram 
 #navigation.events-nav ul li:hover {
     background-color: $button_color;
-    transform: skew(20deg);
-    color: #FFF;
-    
+    transform: skew(20deg);    
 }
+
+##skew back text so it is not distorted 
 #navigation.events-nav ul li a:hover {
     color: #FFF;
     transform: skew(-20deg);

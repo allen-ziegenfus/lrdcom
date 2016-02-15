@@ -235,42 +235,38 @@ function debounce(fn, delay) {
            
             	 var registerButton = A.all('#fixedRegisterBtn');    
                 var currentScrollPos = WIN.get('docScrollY');
-             	console.log("scrollpos event" + currentScrollPos);
+             	console.log("scrollpos event" + currentScrollPos + "visible: " + fixedVisible);
                 var fadeInPosition = A.one('#aboutStartNav').getY();
                 var topNavPosition = A.one('#navigation').getY();
                 
-                if (currentScrollPos <= topNavPosition) {
-                	if (fixedVisible) {
-                	
-                		console.log("removing event nav quickly" + currentScrollPos);
-                		fixedNav.removeClass("events-nav").removeClass("fade").removeClass("in");
-                		registerButton.removeClass("in");
-                		fixedVisible = false;
-                	
-                	}
-                }
-                else if (currentScrollPos + 5 >= fadeInPosition) {
-                	if (!fixedVisible) {
-                		
+       
+                 if (currentScrollPos + 5 >= fadeInPosition) {
+               
+                		console.log("adding event nav with fade" + currentScrollPos);
                 		fixedNav.addClass('fade');
                 		
                 		window.setTimeout(function () {
                 			fixedNav.addClass('in').addClass("events-nav");
+                			console.log("adding in class");
                 			registerButton.addClass("in");
                 			fixedVisible = true;
                 		}, 1000);
-                	}
+        
                 } else  {
-                	if (fixedVisible) {
+        
                 		
                 		console.log("removing event nav with fade" + currentScrollPos);
+                		
+                		console.log("register button before" + registerButton.hasClass("in"));
                 		fixedNav.removeClass('in');
-                		registerButton.removeClass('in');
+                  		console.log("register button after" + registerButton.hasClass("in"));
                 		window.setTimeout(function () {
                 			fixedNav.removeClass('fade').removeClass("events-nav");	
                 			fixedVisible = false;
+                			
+                			registerButton.removeClass('in');
                 		}, 1000);
-                	}
+            
                 }
 
                // navActiveItem(currentScrollPos);
@@ -357,7 +353,7 @@ function debounce(fn, delay) {
                 }
             }
 
-            A.on('scroll', displayFixedNav);
+            A.on('scroll', debounce(displayFixedNav,250));
         }
     );
 </script>

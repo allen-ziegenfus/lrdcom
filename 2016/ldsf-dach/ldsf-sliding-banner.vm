@@ -33,28 +33,34 @@
     font-weight: lighter;
     padding: 20px 10px;
 }
+
+.events-nav, .floating-nav.register-button, .floating-nav.register-button.btn {
+    position: fixed;
+    top: 0;
+    margin-top: 40px;
+}
 .events-nav {
     background-color: #d5d5d0;
     margin-left: 0px;
-    margin-top: 40px;
     float: left;
     left: 0;
     overflow: hidden;
-    position: fixed;
-    top: 0;
+
     z-index: 9999;
 }
 .events-nav.register {
     overflow: visible;
 }
 .floating-nav.register-button {
-    padding: 10px 20px 15px;
-    position: fixed;
-    right: 0px;
-    top: 40px;
+    /*padding: 10px 20px 15px;*/
+    right: 0;
     width: auto;
+    z-index: 9999;
+    background-clip: border-box;
 }
-
+.floating-nav.register-button .btn {
+	display: block;
+}
 .events-nav .image-link {
     display: inline-block;
 }
@@ -186,6 +192,9 @@
 #end
 </ul>
 </nav>
+<nav id="fixedRegisterBtn" class="fade register-button floating-nav">
+	<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a>
+</nav>
 
 
 
@@ -212,7 +221,7 @@ function debounce(fn, delay) {
 
             var displayFixedNav = function() {
            
-            	 var registerButton = A.all('.register-button');    
+            	 var registerButton = A.all('#fixedRegisterBtn');    
                 var currentScrollPos = WIN.get('docScrollY');
              	console.log("scrollpos event" + currentScrollPos);
                 var fadeInPosition = A.one('#aboutStartNav').getY();
@@ -223,7 +232,7 @@ function debounce(fn, delay) {
                 		fixedVisible = false;
                 		console.log("removing event nav quickly" + currentScrollPos);
                 		fixedNav.removeClass("events-nav").removeClass("fade").removeClass("in");
-                		registerButton.removeClass("floating-nav").removeClass("fade").removeClass("in");
+                		registerButton.removeClass("in");
                 	
                 	}
                 }
@@ -231,10 +240,10 @@ function debounce(fn, delay) {
                 	if (!fixedVisible) {
                 		fixedVisible = true;
                 		fixedNav.addClass('fade');
-                		registerButton.addClass("fade");
+                		
                 		window.setTimeout(function () {
                 			fixedNav.addClass('in').addClass("events-nav");
-                			registerButton.addClass("floating-nav").addClass("in");
+                			registerButton.addClass("in");
                 			
                 		}, 1000);
                 	}
@@ -245,9 +254,7 @@ function debounce(fn, delay) {
                 		fixedNav.removeClass('in');
                 		registerButton.removeClass('in');
                 		window.setTimeout(function () {
-                			fixedNav.removeClass('fade').removeClass("events-nav");
-                			registerButton.removeClass("floating-nav").removeClass("fade");
-                			
+                			fixedNav.removeClass('fade').removeClass("events-nav");	
                 		}, 1000);
                 	}
                 }

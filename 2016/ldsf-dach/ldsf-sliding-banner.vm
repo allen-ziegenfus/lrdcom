@@ -359,13 +359,13 @@ function debounce(fn, delay) {
 </script>
 <style type="text/css">
 
-a.btn {
+.btn {
   color: #FFF;
   padding: 15px;
   font-size: 16px;
   background-color: $button_color;
 }
-a.btn:hover {
+.btn:hover {
   background-color: #0067cc;
 }
 

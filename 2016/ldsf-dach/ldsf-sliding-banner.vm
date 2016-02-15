@@ -47,7 +47,7 @@
 .events-nav.register {
     overflow: visible;
 }
-.btn.register-btn {
+.floating-nav.register-button {
     padding: 10px 20px 15px;
     position: fixed;
     right: 0px;
@@ -190,27 +190,66 @@
 
 
 <script>
+
+function debounce(fn, delay) {
+	  var timer = null;
+	  return function () {
+	    var context = this, args = arguments;
+	    clearTimeout(timer);
+	    timer = setTimeout(function () {
+	      fn.apply(context, args);
+	    }, delay);
+	  };
+	}
+
+
     AUI().use(
         'node',
         function(A) {
             var WIN = A.getWin();
             var fixedNav = A.all('#navigation.scroll-navigation');
+            var fixedVisible = false; 
 
             var displayFixedNav = function() {
-               
+           
+            	 var registerButton = A.all('.register-button');    
                 var currentScrollPos = WIN.get('docScrollY');
-        
+             	console.log("scrollpos event" + currentScrollPos);
                 var fadeInPosition = A.one('#aboutStartNav').getY();
                 var topNavPosition = A.one('#navigation').getY();
-
-             
-                if (currentScrollPos + 5 >= fadeInPosition) {
-                    fixedNav.addClass('in');
-                    fixedNav.addClass("events-nav");
-                } else {
-                    fixedNav.removeClass('in');
-                    fixedNav.removeClass("events-nav");
-                    fixedNav.removeClass('aui-helper-hidden');
+                
+                if (currentScrollPos <= topNavPosition) {
+                	if (fixedVisible) {
+                		fixedVisible = false;
+                		console.log("removing event nav quickly" + currentScrollPos);
+                		fixedNav.removeClass("events-nav").removeClass("fade").removeClass("in");
+                		registerButton.removeClass("floating-nav").removeClass("fade").removeClass("in");
+                	
+                	}
+                }
+                else if (currentScrollPos + 5 >= fadeInPosition) {
+                	if (!fixedVisible) {
+                		fixedVisible = true;
+                		fixedNav.addClass('fade');
+                		registerButton.addClass("fade");
+                		window.setTimeout(function () {
+                			fixedNav.addClass('in').addClass("events-nav");
+                			registerButton.addClass("floating-nav").addClass("in");
+                			
+                		}, 1000);
+                	}
+                } else  {
+                	if (fixedVisible) {
+                		fixedVisible = false;
+                		console.log("removing event nav with fade" + currentScrollPos);
+                		fixedNav.removeClass('in');
+                		registerButton.removeClass('in');
+                		window.setTimeout(function () {
+                			fixedNav.removeClass('fade').removeClass("events-nav");
+                			registerButton.removeClass("floating-nav").removeClass("fade");
+                			
+                		}, 1000);
+                	}
                 }
 
                // navActiveItem(currentScrollPos);
@@ -297,7 +336,7 @@
                 }
             }
 
-            A.on('scroll', displayFixedNav);
+            A.on('scroll', debounce(displayFixedNav, 100));
         }
     );
 </script>

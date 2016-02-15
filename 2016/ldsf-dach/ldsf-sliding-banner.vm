@@ -21,19 +21,28 @@
 #set ($text_color = "#4d4d4f")
 
 <style type="text/css">
-.scroll-navigation {
+.navigation {
     display: block;
     float: left;
     left: 0;
     margin-left: 40px;
     position: absolute;
+    z-index: 50;
 }
-#navigation.scroll-navigation a {
+.navigation li {
+	display: inline-block;
+    list-style: none;
+}
+.navigation ul {
+	margin: 0;
+}
+.navigation a {
     color: $text_color;
     font-weight: lighter;
     padding: 20px 10px;
+    font-size: 1.15em;
 }
-.events-nav {
+.floating-navigation {
     background-color: #d5d5d0;
     margin-left: 0px;
     margin-top: 40px;
@@ -171,21 +180,23 @@
     }
 }</style>
 
-<nav class="scroll-navigation" id="navigation">
-<ul>
-#foreach ($link_order in $link_tree.keySet())
-#set ($link_name = $link_tree.get($link_order).get("link_name"))
-#set ($link_href = $link_tree.get($link_order).get("link_href"))
-#set ($link_id = $link_tree.get($link_order).get("link_id"))
-##<div> $link_name: $link_href: $link_id: $link_order</div>
-
-	<li class="nav-item">
-		<a class="animate-scroll" id="$link_id" href="$link_href" onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">$link_name</a>
-	</li>
-
+## nav has to be duplicated to ensure nice floating in of secondary navigation... 
+#set( $nav_ids = ["nav", "floating-nav"] ) 
+#foreach ($nav_id in $nav_ids)
+	<nav class="navigation" id="$nav_id">
+		<ul>
+		#foreach ($link_order in $link_tree.keySet())
+			#set ($link_name = $link_tree.get($link_order).get("link_name"))
+			#set ($link_href = $link_tree.get($link_order).get("link_href"))
+			#set ($link_id = $link_tree.get($link_order).get("link_id"))
+			##<div> $link_name: $link_href: $link_id: $link_order</div>
+			<li class="nav-item">
+				<a class="animate-scroll" id="$link_id" href="$link_href" onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">$link_name</a>
+			</li>
+		#end
+		</ul>
+	</nav>
 #end
-</ul>
-</nav>
 
 
 
@@ -212,29 +223,21 @@ function debounce(fn, delay) {
 
             var displayFixedNav = function() {
            
-            	 var registerButton = A.all('.register-button');    
+            	 var registerButton = A.all('.floating-nav.register-button');    
                 var currentScrollPos = WIN.get('docScrollY');
              	console.log("scrollpos event" + currentScrollPos);
                 var fadeInPosition = A.one('#aboutStartNav').getY();
                 var topNavPosition = A.one('#navigation').getY();
                 
-                if (currentScrollPos <= topNavPosition) {
-                	if (fixedVisible) {
-                		fixedVisible = false;
-                		console.log("removing event nav quickly" + currentScrollPos);
-                		fixedNav.removeClass("events-nav").removeClass("fade").removeClass("in");
-                		registerButton.removeClass("floating-nav").removeClass("fade").removeClass("in");
-                	
-                	}
-                }
-                else if (currentScrollPos + 5 >= fadeInPosition) {
+     
+                if (currentScrollPos + 5 >= fadeInPosition) {
                 	if (!fixedVisible) {
                 		fixedVisible = true;
                 		fixedNav.addClass('fade');
                 		registerButton.addClass("fade");
                 		window.setTimeout(function () {
                 			fixedNav.addClass('in').addClass("events-nav");
-                			registerButton.addClass("floating-nav").addClass("in");
+                			registerButton.addClass("in");
                 			
                 		}, 1000);
                 	}
@@ -242,13 +245,10 @@ function debounce(fn, delay) {
                 	if (fixedVisible) {
                 		fixedVisible = false;
                 		console.log("removing event nav with fade" + currentScrollPos);
-                		fixedNav.removeClass('in');
+                		fixedNav.removeClass ('in');
                 		registerButton.removeClass('in');
-                		window.setTimeout(function () {
-                			fixedNav.removeClass('fade').removeClass("events-nav");
-                			registerButton.removeClass("floating-nav").removeClass("fade");
-                			
-                		}, 1000);
+                		fixedNav.removeClass('fade').removeClass("events-nav");
+            		
                 	}
                 }
 
@@ -487,6 +487,9 @@ a.btn {
 						#end
 					</div>
 					<div class="register-button">
+						<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a></div>
+					</div>
+					<div class="fade register-button floating-nav">
 						<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a></div>
 					</div>
 			</div>

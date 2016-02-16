@@ -44,6 +44,7 @@
     color: $text_color;
     font-weight: lighter;
     padding: 20px 10px;
+	height: 20px;
 }
 
 .events-nav, .floating-nav.register-button, .floating-nav.register-button.btn {
@@ -104,6 +105,7 @@
 	 display: block;
    margin: 0;
    padding: 15px;
+ height: 30px;
 }
 
 ##hover as parallelogram 
@@ -131,10 +133,14 @@
     transform: skew(-20deg);
     cursor: pointer;
 }
+#navigation ul li a:hover {
+    color: #0067aa;
+ 	font-weight: normal;
+}
+
 .nav-icon {
     height: 28px;
 	width: auto;
-	vertical-align: middle;
 }
 .right-fixed {
     float: right;
@@ -486,7 +492,9 @@ function debounce(fn, delay) {
 	background: url($background_image.data) no-repeat center bottom;
 	##background-size: cover;
 	## cover leads to funny bild things on mobile (heads cut off..)
-	background-size: 115%;
+
+	background-size: cover;
+	background-position: 0px 50%;
 	overflow: hidden;
     position: relative;
 }
@@ -500,7 +508,7 @@ function debounce(fn, delay) {
 }
 
 #intro .content.slided {
-	left: 18%;
+	left: 15%;
 }
 #intro .content img {
 	height: 190px;

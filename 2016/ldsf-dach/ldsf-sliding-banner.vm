@@ -140,7 +140,8 @@
 
 .nav-icon {
     height: 28px;
-	width: auto;
+/* auto does not work in ie */
+	width: 85px;
 }
 .right-fixed {
     float: right;

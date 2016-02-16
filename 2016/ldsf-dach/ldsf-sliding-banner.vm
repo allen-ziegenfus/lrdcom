@@ -51,6 +51,15 @@
     top: 0;
     margin-top: 40px;
 }
+.scroll-navigation .nav-icon {
+	display: none;
+}
+.events-nav .nav-icon{
+	display: block;
+}
+.events-nav .nav-home{
+	display: none;
+}
 .events-nav {
     background-color: #d5d5d0;
     margin-left: 0px;
@@ -88,6 +97,7 @@
 #navigation.events-nav li {
    margin: 0;
    display: inline-block;
+	vertical-align: middle;
 }
 #navigation.events-nav li a{
    margin: 0;
@@ -115,10 +125,11 @@
     position: relative;
     z-index: 3;
 }
+.events-nav #navhome {
+    margin: 5px 20px 5px 25px;
+}
 .nav-icon {
     height: 28px;
-    position: relative;
-    top: 10px;
 }
 .right-fixed {
     float: right;
@@ -198,7 +209,17 @@
 ##<div> $link_name: $link_href: $link_id: $link_order</div>
 
 	<li class="nav-item">
-		<a class="animate-scroll" id="$link_id" href="$link_href" onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">$link_name</a>
+	
+	
+		<a class="animate-scroll" id="$link_id" href="$link_href" 
+			onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">
+		#if ($link_href == "#wrapper")
+			<img class="nav-icon" src="/documents/67510365/68382929/16+LDSF+Logo+Abbrev.svg"/>
+			<span class="nav-home">$link_name</span>
+		#else
+			$link_name
+		#end
+		</a>
 	</li>
 
 #end

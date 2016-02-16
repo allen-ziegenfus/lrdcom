@@ -40,7 +40,7 @@
 ## if not "none" then defaults to uppercase...
 #set ($texttransform = "none")
 #set ($agendabutton = true)
-
+#set ($selector_color = "#0067aa")
 
 #if ($agendabutton)
 
@@ -117,7 +117,7 @@
  	 </div> 
  </div> 
  
- <div class="pop-up" id="agendaPop">
+ <div class="agenda-pop-up" id="agendaPop">
  
 #end
 
@@ -743,10 +743,11 @@
   font-weight: normal;
 }
 
-#wrapper #agendaWrapper .select-day-1, #wrapper.class-toggle-carousel-day-1 #agendaWrapper .select-day-1.class-toggle-carousel,
+#wrapper #agendaWrapper .select-day-1, 
 #wrapper.class-toggle-carousel-day-1 #agendaWrapper .select-day-1.class-toggle-carousel,
+#wrapper.class-toggle-carousel-day-2 #agendaWrapper .select-day-2.class-toggle-carousel,
 #wrapper.class-toggle-carousel-day-3 #agendaWrapper .select-day-3.class-toggle-carousel {
-  background: #178ACB;
+  background: $selector_color;
   color: #FFF;
 }
 
@@ -757,14 +758,17 @@
 #wrapper.class-toggle-carousel-day-2 #agendaWrapper .select-day-3,
 #wrapper.class-toggle-carousel-day-3 #agendaWrapper .select-day-1,
 #wrapper.class-toggle-carousel-day-3 #agendaWrapper .select-day-2 {
+
+  
+  
   background: #FFF;
   color: #4C4C4E;
     font-weight: lighter;
 }
 
 #wrapper #agendaWrapper .togglers .class-toggle-carousel:hover {
-  background: #F7BC20;
-  color: #FFF;
+  background: #d5d5d0;
+  color: #4d4d4f;
 }
 
 #wrapper.class-toggle-carousel-day-1 .agenda-1,
@@ -838,7 +842,7 @@
 .categorySelectors .ui-selected,
 .categorySelectors .using-selected {
   background-position: 92% 50%;
-  color: #178ACB;
+  color: #selector_color;
   font-weight: normal;
 }
 

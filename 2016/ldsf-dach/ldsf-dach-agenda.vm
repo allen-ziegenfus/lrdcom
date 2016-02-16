@@ -39,6 +39,94 @@
 #set ($admineditlink = "/web/events2016/ldsf-dach/admin?p_p_id=169_INSTANCE_FXPzw37UEPkQ&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=4&p_p_col_count=8&_169_INSTANCE_FXPzw37UEPkQ_struts_action=%2Fdynamic_data_list_display%2Fedit_record&_169_INSTANCE_FXPzw37UEPkQ_cmd=update&_169_INSTANCE_FXPzw37UEPkQ_redirect=https%3A%2F%2Fwww.liferay.com%2Fweb%2Fevents2016%2Fldsf-dach%2Fadmin%3Fp_p_id%3D169_INSTANCE_FXPzw37UEPkQ%26p_p_lifecycle%3D0%26p_p_state%3Dnormal%26p_p_mode%3Dview%26p_p_col_id%3Dcolumn-1%26p_p_col_pos%3D4%26p_p_col_count%3D8&_169_INSTANCE_FXPzw37UEPkQ_")
 ## if not "none" then defaults to uppercase...
 #set ($texttransform = "none")
+#set ($agendabutton = true)
+
+
+#if ($agendabutton)
+
+<style type="text/css">
+#feedbackContainer{display:none}
+</style> 
+ <style type="text/css">
+ .lego-image{max-height:100%;max-width:100%}
+ .max-960{margin:0 auto;max-width:960px}
+ .no-max .max-960{max-width:none}
+ .agenda-section .class-toggle{cursor:pointer;margin:80px auto 40px;max-width:180px}
+ #agendaWrapper .aui-toggler-content-expanded{white-space:normal}
+ #agendaWrapper .aui-toggler-content-expanded p{max-width:720px}
+ 
+ #agendaPop {
+    max-height: 320px;
+    overflow: hidden;
+    transition: max-height ease-in-out 0.75s;
+  }
+
+    #agendaPop.class-toggle-active {
+        max-height: 5000px;
+    }
+
+    #agendaPop .blur-container {
+        background-image: -webkit-gradient(linear, to bottom, to top, color-stop(0%, rgba(248, 248, 248, 0)), color-stop(1%, rgba(248, 248, 248, 0)), color-stop(70%, rgba(255, 255, 255, 0.8)), color-stop(100%, rgba(255, 255, 255, 0.8)));
+        background-image: -webkit-linear-gradient(to bottom, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0) 1%, rgba(255, 255, 255, 0.8) 70%, rgba(255, 255, 255, 0.8) 100%);
+        background-image: -moz-linear-gradient(to bottom, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0) 1%, rgba(255, 255, 255, 0.8) 70%, rgba(255, 255, 255, 0.8) 100%);
+        background-image: -o-linear-gradient(to bottom, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0) 1%, rgba(255, 255, 255, 0.8) 70%, rgba(255, 255, 255, 0.8) 100%);
+        background-image: linear-gradient(to bottom, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0) 1%, rgba(255, 255, 255, 0.8) 70%, rgba(255, 255, 255, 0.8) 100%);
+        bottom: 0;
+        display: block;
+        height: 80px;
+        position: absolute;
+        width: 100%;
+    }
+
+    #agendaPop.class-toggle-active .blur-container {
+        height: 0
+    }
+
+@media(max-width: 720px) {
+  #agendaPop.class-toggle-active {
+    margin: auto;
+    max-width: 480px;
+    top: 0;
+  }
+}
+
+@media(max-width: 780px) {
+    #agendaPop.class-toggle-active {
+        max-height: 6250px;
+    }
+}
+
+@media(max-width: 480px) {
+  #agendaPop.class-toggle-active {
+    margin: auto;
+    max-width: 320px;
+  }
+ }
+ </style> 
+ 
+ <div id="agenda">
+ <div class="lego-article" id="article-54196071">
+ 	 <div class="lego-article-content max-960"> 
+ 	 	<div class="aui-helper-clearfix lego-section section-1 agenda-section" > 
+ 	 		<div class="aui-w100 block-1 content-column lego-block centered" > 
+ 	 			<div class="content-column-content only-column"> 
+ 	 				<div class="lego-element btn class-toggle" data-target-node="#agendaPop"> zur Agenda </div>
+ 	 			 </div> 
+ 	 		</div> 
+ 	 	</div> 
+ 	 </div> 
+ </div> 
+ 
+ <div class="pop-up" id="agendaPop">
+ 
+#end
+
+
+
+
+
+
+
 
 <div class="categorySelectors category-toggle-container desktop-hidden">
   <div class="aui-toggler-header aui-toggler-header-collapsed toggle-header">
@@ -212,7 +300,7 @@
 #set( $tabWidth = 100 / $agenda.keySet().size() )
 
 ## day navigation
-<div id="agenda">
+
 <div class="" id="agendaWrapper">
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
     #foreach ($day_to_print in $agenda.keySet())
@@ -1134,7 +1222,7 @@ AUI().use(
 	font-style: italic;
 }
 
-#closePopUp {
+#agendaclosePopUp {
 	background: url(/documents/35935946/36204257/close-pop-up.png/98401a14-9fcf-4f9a-8f1d-4fdcb7ff0207?t=1392924953000?t=1392924953000?t=1392924953590) no-repeat;
 	cursor: pointer;
 	float: right;
@@ -1171,7 +1259,7 @@ AUI().ready(
 		var pagePopUp = A.one('#pagePopUp');
 
 		if (!pagePopUp) {
-			A.one('#wrapper').append('<div class="aui-helper-hidden" id="pagePopUp"><div id="closePopUp"></div></div>')
+			A.one('#wrapper').append('<div class="aui-helper-hidden" id="pagePopUp"><div id="agendaclosePopUp"></div></div>')
 
 			pagePopUp = A.one('#pagePopUp');
 		};
@@ -1241,3 +1329,32 @@ AUI().ready(
 	}
 );
 </script>
+
+#if ($agendabutton)
+	<div class="blur-container">
+		&nbsp;</div>
+</div>
+
+<style type="text/css">
+.agenda-arrow svg {
+		margin-left: 7px;
+		transform: rotate(-90deg);
+	}
+
+	.agenda-arrow.active svg {
+		transform: rotate(90deg);
+	}</style>
+<p class="centered">
+	<a class="class-toggle animate-scroll agenda-arrow" data-target-node="#agendaPop" href="#agenda"> <svg enable-background="new 0 0 15 30" height="30px" id="Layer_1" version="1.1" viewbox="0 0 15 30" width="15px" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px"> <polyline fill="none" points="14.5,29 0.5,15 14.5,1 " stroke="#909295" stroke-miterlimit="10"></polyline> </svg> </a></p>
+<script>
+AUI().ready(
+	'node',
+	function(A) {
+		A.one('.agenda-arrow').on('click', function(e) {
+			this.toggleClass('active');
+		});
+	}
+);
+</script>
+#end
+

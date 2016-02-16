@@ -1221,7 +1221,7 @@ AUI().use(
 	font-style: italic;
 }
 
-#closePopUp {
+#agendaclosePopUp {
 	background: url(/documents/35935946/36204257/close-pop-up.png/98401a14-9fcf-4f9a-8f1d-4fdcb7ff0207?t=1392924953000?t=1392924953000?t=1392924953590) no-repeat;
 	cursor: pointer;
 	float: right;
@@ -1258,7 +1258,7 @@ AUI().ready(
 		var pagePopUp = A.one('#pagePopUp');
 
 		if (!pagePopUp) {
-			A.one('#wrapper').append('<div class="aui-helper-hidden" id="pagePopUp"><div id="closePopUp"></div></div>')
+			A.one('#wrapper').append('<div class="aui-helper-hidden" id="pagePopUp"><div id="agendaclosePopUp"></div></div>')
 
 			pagePopUp = A.one('#pagePopUp');
 		};

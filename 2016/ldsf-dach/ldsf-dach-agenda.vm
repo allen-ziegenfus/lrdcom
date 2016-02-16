@@ -104,6 +104,7 @@
  }
  </style> 
  
+ <div id="agenda">
  <div class="lego-article" id="article-54196071">
  	 <div class="lego-article-content max-960"> 
  	 	<div class="aui-helper-clearfix lego-section section-1 agenda-section" > 
@@ -299,7 +300,7 @@
 #set( $tabWidth = 100 / $agenda.keySet().size() )
 
 ## day navigation
-<div id="agenda">
+
 <div class="" id="agendaWrapper">
   <div id="agendaTabs" class="togglers sticky-watch" data-offset='{"top": "-88"}'>
     #foreach ($day_to_print in $agenda.keySet())

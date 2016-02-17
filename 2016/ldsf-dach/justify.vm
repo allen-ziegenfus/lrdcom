@@ -5,7 +5,7 @@
 }
 
 .justify-container, .justify-container .justify-title {
-    color: #000;
+    color: #FFF;
     font-weight: lighter;
 }
 
@@ -20,6 +20,9 @@
 padding-top: 30px;
 max-height: 400px;
 
+}
+.justify-text {
+color: black;
 }
 
 .safari .flip-item.class-toggle-off-click-active {
@@ -41,7 +44,7 @@ max-height: 400px;
 }
 
 .justify-back-content a {
-	color: #F3A41E;
+	color: #000;
 
 }
 
@@ -55,13 +58,15 @@ max-height: 400px;
 	padding: 1em;
     position: relative;
 }
-
+.justify-item:hover {
+	border: 1px solid white;
+}
 .justify-img {
 	max-width: 100%;
 }
 
 .justify-back-content .justify-title {
-	color: #F3A41E;
+	color: #000;
 }
 
 @media (max-width: 820px) {

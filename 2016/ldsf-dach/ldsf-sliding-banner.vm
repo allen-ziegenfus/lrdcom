@@ -21,7 +21,9 @@
 #set ($text_color = "#4d4d4f")
 
 <style type="text/css">
-    
+    .content-column {
+        float: left
+    }
     .fade {
     	opacity: 0;
     	transition: opacity 1s ease-in-out;
@@ -453,7 +455,8 @@ function debounce(fn, delay) {
   background-color: $button_color;
 }
 .btn:hover {
-  background-color: #0067cc;
+  background-color: #153f6d;
+  color: #FFF;
 }
 
 .content .span-left {

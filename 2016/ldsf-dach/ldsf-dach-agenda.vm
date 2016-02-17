@@ -767,8 +767,8 @@
 }
 
 #wrapper #agendaWrapper .togglers .class-toggle-carousel:hover {
-  background: #d5d5d0;
-  color: #4d4d4f;
+  background: #153f6d;
+  color: #FFF;
 }
 
 #wrapper.class-toggle-carousel-day-1 .agenda-1,

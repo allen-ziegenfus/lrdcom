@@ -66,7 +66,7 @@
 	color: #FFF;
 	display: inline-block;
 	margin-top: 5px;
-    max-width: 340px;
+    max-width: 450px;
 	text-align: left;
 }
 
@@ -136,9 +136,8 @@
 #introCover:after {
 	content: "";
 	display: block;
-	/*top: -250px;*/
-        top: -377px;
-	-ms-transform: skew(45deg);
+	top: -250px;
+        -ms-transform: skew(45deg);
 	-webkit-transform: skew(-45deg);
 	-moz-transform: skew(-45deg);
 	-o-transform: skew(-45deg);

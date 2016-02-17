@@ -157,10 +157,7 @@ a.android {
 
 
 .social li a:hover {
-    background-color: -webkit-linear-gradient(45deg,transparent 50%,#df8f1d 0),#f1a31e left top;
-    background: -o-linear-gradient(45deg,transparent 50%,#df8f1d 0),#f1a31e left top;
-    background: -moz-linear-gradient(45deg,transparent 50%,#df8f1d 0),#f1a31e left top;
-    background: linear-gradient(45deg,transparent 50%,#df8f1d 0),#f1a31e left top;
+    background-color: #0067aa; 
 }
 
 .social li a:before {
@@ -396,7 +393,7 @@ a.android {
 	<div class="created-by">
 		Handmade on Liferay in Diamond Bar, CA</div>
 	<div class="copyright">
-		© 2015 Liferay Inc. All Rights Reserved.</div>
+		© 2016 Liferay Inc. All Rights Reserved.</div>
 </div>
 <script>
 AUI().ready(

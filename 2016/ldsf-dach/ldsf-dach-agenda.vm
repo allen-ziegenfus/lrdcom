@@ -279,7 +279,11 @@
     #set ($int_room_number = $getterUtil.getInteger($room_number))
     #set ($mod_room_number = 100 + $int_room_number)
     #set ($void = $session_map_info.put("room-number", $mod_room_number))
-    #set ($void = $existing_session_map.put("room-$mod_room_number", $session_map_info))
+    ##set ($void = $existing_session_map.put("room-$mod_room_number", $session_map_info))
+    ## changed the session map key to title to allow parallel sessions in same room. 
+    ## todo - pick something better than title? 
+    #set ($void = $existing_session_map.put($record.getFieldValue("title"), $session_map_info))
+    
     #set ($void = $existing_row_map.put("sessions", $existing_session_map))
 
     #set ($existing_end_time = $existing_row_map.get("end-time"))

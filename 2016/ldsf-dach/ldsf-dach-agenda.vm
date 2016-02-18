@@ -122,12 +122,6 @@
 #end
 
 
-
-
-
-
-
-
 <div class="categorySelectors category-toggle-container desktop-hidden">
   <div class="aui-toggler-header aui-toggler-header-collapsed toggle-header">
     Filter by <span class="arrow"></span>
@@ -431,11 +425,14 @@
               #set ($rowspan = "")
             #end
 
+ 			#if ($session_type != "blank" && $session_type == "Break")
+ 			   #set ($pop_up_css_class = "$pop_up_css_class break-row-td")
+ 			#end
             ## Print td
             <td class="$pop_up_css_class" $colspan $rowspan onclick="ga('send', 'event', '$ga_conference_name', 'Agenda Session Clicks', '$title - $speaker_name');">
-              #if ($session_type != "blank" && $session_type != "")
-                <span>$session_type:</span>
-              #end
+             ##if ($session_type != "blank" && $session_type != "")
+             ##   <span>$session_type:</span>
+             ## #end
                 <div class="mobile-only">
                   $start_time_display - $row_end_time_display
                </div>
@@ -673,7 +670,10 @@
 }
 
 #agendaWrapper .single-row-td {
-  background: #F2F2F2;
+  background: #ebebeb;
+}
+#agendaWrapper .break-row-td {
+  background: #F3F3F3;
 }
 
 #agendaWrapper .speaker-entry {

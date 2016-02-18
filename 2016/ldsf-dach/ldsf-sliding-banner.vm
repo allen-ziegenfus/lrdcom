@@ -21,6 +21,11 @@
 #set ($text_color = "#4d4d4f")
 
 <style type="text/css">
+    /* override padding in mobile */
+    .responsive .content-column .content-column-content,.responsive .content-column .portlet-column-content,.responsive .portlet-column .content-column-content,.responsive .portlet-column .portlet-column-content {
+    	padding:0 !important;
+    }
+    
     .content-column {
         float: left
     }
@@ -157,23 +162,28 @@
     nav.desktop-only {
         display: none;
     }
-    nav.responsive-only {
-        background-color: #06a;
-        height: 60px;
+    #navigation {
+    	background-color: #F3F3F3;
         position: fixed;
         top: 0;
         width: 100%;
         z-index: 5;
+    	margin: 0;
+    	padding: 20px;
     }
-    nav.responsive-only #navigationToggle {
+    #navigation #navigationToggle {
         background-image: url(/documents/14/48124953/hamburger.png);
         cursor: pointer;
         display: inline-block;
         height: 18px;
-        position: relative;
-        left: 5%;
-        top: 20px;
         width: 21px;
+    }
+    #fixedRegisterBtn {
+    	position: fixed;
+    	top: 0;
+    	right: 0;
+    	margin: 10px;
+		opacity: 1;
     }
     nav.responsive-only .register-button {
         bottom: -17px;
@@ -185,9 +195,7 @@
     nav.responsive-only .register-button a {
         padding: 8px 25px;
     }
-    nav#navigation {
-        display: none;
-    }
+
     #responsiveEventsNav {
         background-color: #DBE0E4;
         display: none;
@@ -195,8 +203,19 @@
         top: 35px;
         width: 100%;
     }
-    #responsiveEventsNav.class-toggle-active {
+    #navigation ul {
+        display: none;
+    }
+    #navigation.class-toggle-active ul {
         display: block;
+    	text-align: left;
+    }
+    #navigation.class-toggle-active li {
+        display: block;
+    	margin: 7px 0;
+    }
+    #navigation.class-toggle-active a {
+        padding: 5px 0;
     }
     #responsiveEventsNav ul {
         list-style: none;
@@ -216,7 +235,8 @@
 
 
 
-<nav class="scroll-navigation" id="navigation">
+<nav class="scroll-navigation " id="navigation">
+<div class="class-toggle" data-target-node="#navigation" id="navigationToggle"></div>
 <ul>
 #foreach ($link_order in $link_tree.keySet())
 #set ($link_name = $link_tree.get($link_order).get("link_name"))
@@ -236,7 +256,7 @@
 </nav>
 
 
-<nav class="scroll-navigation events-nav fade" id="fixednavigation">
+<nav class="scroll-navigation events-nav fade desktop-only" id="fixednavigation">
 <ul>
 #foreach ($link_order in $link_tree.keySet())
 #set ($link_name = $link_tree.get($link_order).get("link_name"))
@@ -313,11 +333,13 @@
 	</li>
 #end
 </ul>
+
+
+</nav>
+<nav id="fixedRegisterBtn" class="fade register-button floating-nav ">
+<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a>
 </nav>
 
-<nav id="fixedRegisterBtn" class="fade register-button floating-nav">
-	<a class="btn" href="$button_text.button_url.data target="_blank">$button_text.data</a>
-</nav>
 
 
 

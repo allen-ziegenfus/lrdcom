@@ -394,7 +394,24 @@
 		}
 	}
 </style>
-
+## at least show non-javascripters the banner correctly
+<noscript>
+<style>
+	#fixednavigation.events-nav, #fixedRegisterBtn {
+		display: none;
+	}
+	.fade {
+		opacity: 1;
+	}
+	#introCover.start {
+		width: 25%;
+	}
+	#intro .content, #intro .content.slided {
+		left: 15%;
+		top: 25%;
+	}
+</style>
+</noscript>
 <nav class="scroll-navigation " id="navigationbar">
 	<div class="class-toggle" data-target-node="#navigationbar" id="navtoggle"></div>
 	<ul>

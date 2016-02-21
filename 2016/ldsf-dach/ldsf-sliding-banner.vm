@@ -47,13 +47,35 @@
     left: 0;
     margin-left: 40px;
     position: absolute;
+ 	z-index: 50;
 }
-#navigation.scroll-navigation a {
+#navigationbar.scroll-navigation a {
     color: $text_color;
     font-weight: lighter;
     padding: 20px 10px;
 	height: 20px;
+display: block;
+text-decoration: none;
+font-size: 1.15em;
 }
+
+
+#navigationbar.scroll-navigation 	ul {
+		margin: 0;
+		text-align: right;
+}
+
+	#navigationbar.scroll-navigation li {
+		display: inline-block;
+		list-style: none;
+
+	margin: 7px 5px;
+	}
+
+
+
+	
+
 
 .events-nav, .floating-nav.register-button, .floating-nav.register-button.btn {
     position: fixed;
@@ -141,7 +163,7 @@
     transform: skew(-20deg);
     cursor: pointer;
 }
-#navigation ul li a:hover {
+#navigationbar ul li a:hover {
     color: #0067aa;
  	font-weight: normal;
 }
@@ -165,7 +187,7 @@
     nav.desktop-only {
         display: none;
     }
-    #navigation {
+    #navigationbar {
     	background-color: #F3F3F3;
         position: fixed;
         top: 0;
@@ -174,13 +196,14 @@
     	margin: 0;
     	padding: 20px;
     }
-    #navigation #navigationToggle {
+    #navtoggle {
         background-image: url(/documents/14/48124953/hamburger.png);
         cursor: pointer;
         display: inline-block;
         height: 18px;
         width: 21px;
     }
+
     #fixedRegisterBtn {
     	position: fixed;
     	top: 0;
@@ -188,18 +211,18 @@
     	margin: 10px;
 		opacity: 1;
     }
-    #navigation ul {
+    #navigationbar ul {
         display: none;
     }
-    #navigation.class-toggle-active ul {
+    #navigationbar.class-toggle-active ul {
         display: block;
     	text-align: left;
     }
-    #navigation.class-toggle-active li {
+    #navigationbar.class-toggle-active li {
         display: block;
     	margin: 7px 0;
     }
-    #navigation.class-toggle-active a {
+    #navigationbar.class-toggle-active a {
         padding: 5px 0;
     }
 }</style>
@@ -330,8 +353,6 @@
 
 #introCover {
     height: 400px;
-	height: 80vh; 
-
 border: none;  
 	}
 	
@@ -349,8 +370,8 @@ a.btn {
 </style>
 
 
-<nav class="scroll-navigation " id="navigation">
-<div class="class-toggle" data-target-node="#navigation" id="navigationToggle"></div>
+<nav class="scroll-navigation " id="navigationbar">
+<div   id="navtoggle"></div>
 <ul>
 #foreach ($link_order in $link_tree.keySet())
 #set ($link_name = $link_tree.get($link_order).get("link_name"))
@@ -359,7 +380,7 @@ a.btn {
 ##<div> $link_name: $link_href: $link_id: $link_order</div>
 
 	<li class="nav-item">
-		<a class="animate-scroll" id="$link_id" href="$link_href" 
+		<a class="animate-scroll"  href="$link_href" 
 			onClick="ga('send', 'event', 'Navigation Clicks', 'Universal Theme - Scroll Navigation', '$link_name');">
 		$link_name
 		</a>
@@ -387,7 +408,7 @@ a.btn {
 			width="612.5px" height="203.203px" viewBox="0 32.5 612.5 203.203" enable-background="new 0 32.5 612.5 203.203"
 			 xml:space="preserve">
 		<g>
-			<path shape-rendering="optimizeQuality" fill="#FFFFFF" d="M72.505,39.261c-37.219,0-67.496,30.279-67.496,67.502c0,18.578,7.377,35.876,20.789,48.729
+			<path shape-rendering="geometricPrecision" fill="#FFFFFF" d="M72.505,39.261c-37.219,0-67.496,30.279-67.496,67.502c0,18.578,7.377,35.876,20.789,48.729
 				c0.038,0.054,0.085,0.104,0.139,0.153c0.142,0.162,10.513,11.375,16.459,26.826c0.042,0.104,0.09,0.203,0.124,0.305
 				c2.344,6.15,3.967,12.967,3.967,20.01c0,0.147,0.017,0.291,0.05,0.442c0.219,4.058,3.809,7.604,9.399,9.962
 				c0.854,8.42,7.986,15.014,16.628,15.014c8.662,0,15.796-6.621,16.627-15.07c5.503-2.344,9.034-5.857,9.282-9.881
@@ -406,20 +427,20 @@ a.btn {
 				c-0.088-0.131-0.185-0.252-0.294-0.357c-12.761-12.113-19.79-28.463-19.79-46.048c0-35.002,28.478-63.477,63.47-63.477
 				c16.956,0,32.895,6.601,44.882,18.59c11.984,11.986,18.596,27.926,18.596,44.887C135.983,124.348,128.955,140.697,116.198,152.811z
 				"/>
-			<path shape-rendering="optimizeQuality" fill="#FFFFFF" d="M73.931,79.749c-0.753-0.754-2.09-0.754-2.845,0l-32.82,32.824c-0.576,0.569-0.749,1.44-0.437,2.191
+			<path shape-rendering="geometricPrecision" fill="#FFFFFF" d="M73.931,79.749c-0.753-0.754-2.09-0.754-2.845,0l-32.82,32.824c-0.576,0.569-0.749,1.44-0.437,2.191
 				c0.314,0.755,1.046,1.242,1.866,1.242l30.852-0.011v32.777c0,1.116,0.905,2.014,2.018,2.014c1.106,0,2.01-0.897,2.01-2.014v-34.797
 				c0-0.53-0.211-1.04-0.589-1.418c-0.378-0.382-0.888-0.591-1.421-0.591h-0.009l-28.001,0.015l27.951-27.96l31.344,31.341
 				c0.781,0.784,2.059,0.784,2.842,0c0.782-0.79,0.782-2.064,0-2.851L73.931,79.749z"/>
-			<polygon shape-rendering="optimizeQuality" fill="#FFFFFF" points="220.642,77.399 215.327,77.399 215.327,194.999 277.98,194.998 277.98,191.053 220.642,191.053 	
+			<polygon shape-rendering="geometricPrecision" fill="#FFFFFF" points="220.642,77.399 215.327,77.399 215.327,194.999 277.98,194.998 277.98,191.053 220.642,191.053 	
 				"/>
-			<path shape-rendering="optimizeQuality" fill="#FFFFFF" d="M389.213,93.125c-4.881-5.043-10.822-8.965-17.655-11.655c-6.867-2.702-14.556-4.072-22.851-4.072
+			<path shape-rendering="geometricPrecision" fill="#FFFFFF" d="M389.213,93.125c-4.881-5.043-10.822-8.965-17.655-11.655c-6.867-2.702-14.556-4.072-22.851-4.072
 				l-42.495,0v117.6h42.495c8.299,0,15.986-1.371,22.851-4.072c6.834-2.689,12.774-6.611,17.655-11.656
 				c4.885-5.05,8.73-11.268,11.428-18.481c2.709-7.245,4.083-15.532,4.083-24.634c0-9.043-1.374-17.302-4.083-24.548
 				C397.944,104.395,394.098,98.176,389.213,93.125z M395.543,159.417c-2.41,6.819-5.876,12.669-10.301,17.388
 				c-4.434,4.73-9.826,8.388-16.031,10.87c-6.17,2.468-13.068,3.72-20.504,3.72h-37.18V81.002l37.18,0
 				c7.436,0,14.334,1.251,20.504,3.719c6.201,2.48,11.596,6.137,16.031,10.869c4.425,4.719,7.891,10.569,10.301,17.387
 				c2.395,6.778,3.609,14.576,3.609,23.177C399.153,144.814,397.938,152.641,395.543,159.417z"/>
-			<path shape-rendering="optimizeQuality" fill="#FFFFFF" d="M492.5,141.885c-2.714-2.17-5.841-4.001-9.295-5.443c-3.566-1.486-7.281-2.867-11.04-4.103
+			<path shape-rendering="geometricPrecision" fill="#FFFFFF" d="M492.5,141.885c-2.714-2.17-5.841-4.001-9.295-5.443c-3.566-1.486-7.281-2.867-11.04-4.103
 				c-3.792-1.245-7.563-2.53-11.206-3.821c-3.74-1.324-7.136-2.986-10.094-4.938c-3.041-2.007-5.529-4.482-7.393-7.355
 				c-1.919-2.955-2.893-6.702-2.893-11.137c0-3.352,0.635-6.599,1.886-9.65c1.256-3.064,3.12-5.799,5.54-8.128
 				c2.416-2.323,5.438-4.177,8.984-5.512c3.521-1.324,7.631-1.995,12.213-1.996c4.573,0,8.502,0.582,11.678,1.73
@@ -436,7 +457,7 @@ a.btn {
 				c5.493,2.691,12.174,4.057,19.854,4.057c5.91,0,11.22-0.923,15.783-2.742c4.548-1.813,8.438-4.318,11.564-7.443
 				c3.119-3.119,5.535-6.847,7.179-11.078c1.652-4.254,2.49-8.864,2.49-13.701c0-4.656-0.811-8.573-2.41-11.643
 				C497.311,146.652,495.146,144.004,492.5,141.885z"/>
-			<polygon shape-rendering="optimizeQuality" fill="#FFFFFF" points="605.492,81.17 605.492,77.396 536.42,77.396 536.42,194.996 541.734,194.996 541.734,139.367 
+			<polygon shape-rendering="geometricPrecision" fill="#FFFFFF" points="605.492,81.17 605.492,77.396 536.42,77.396 536.42,194.996 541.734,194.996 541.734,139.367 
 				596.934,139.366 596.934,135.592 541.734,135.592 541.734,81.17 	"/>
 		</g>
 		</svg>
@@ -505,7 +526,7 @@ function debounce(fn, delay) {
                 var currentScrollPos = WIN.get('docScrollY');
              	console.log("scrollpos event" + currentScrollPos + "visible: " + fixedVisible);
                 var fadeInPosition = A.one('#aboutStartNav').getY();
-                var topNavPosition = A.one('#navigation').getY();
+                var topNavPosition = A.one('#navigationbar').getY();
                
                 if (currentScrollPos + 5 >= fadeInPosition) {
                 	fixedNav.show(true);
@@ -605,8 +626,18 @@ function debounce(fn, delay) {
     );
 
 AUI().ready(
-	'aui-base',
+	'aui-base', 'event-tap',
 	function(A) {
+		
+		
+		var toggle = A.all('#navtoggle');
+		var nav = A.all('#navigationbar');            
+		toggle.on('click', function () {
+		
+				console.log("tapped");
+			     nav.toggleClass("class-toggle-active");
+				
+		});
 		
 		## fade in banner content
 		var bannerContent = document.getElementById("bannerContent");
@@ -622,13 +653,19 @@ AUI().ready(
 			bannerContent.className += " slided";
 		}
 		
+
+	
 		if (window.innerWidth < ${mobile_breakpoint} ) {
 			addLoadCSSClasses();
     		return;
     	}
+		
+	
+		
 		## slide in banner cover shortly after load
 		A.on('load', function() {
-				window.setTimeout(addLoadCSSClasses, 1500 );
+			
+			 window.setTimeout(addLoadCSSClasses, 1500 );
 		});
 	}
 );

@@ -343,8 +343,10 @@
 			background-position: 0; 
 			background-size: 100%;
 			background-repeat: no-repeat;
+			margin-top: 44px;
 			overflow: hidden;
 			position: relative;
+			
 		}
 
 		#intro .content, #intro .content.slided {

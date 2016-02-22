@@ -345,10 +345,13 @@
 			background-repeat: no-repeat;
 			margin-top: 44px;
 			overflow: hidden;
-			position: relative;
-			
+			position: relative;	
 		}
 
+		#intro .register-button{
+			display: none;
+		}
+		
 		#intro .content, #intro .content.slided {
 			left: 5%;
 			top: 5%;
@@ -389,6 +392,7 @@
 		}
 	}
 
+		
 	@media screen and (max-width: ${mobile_breakpoint}px) and (min-width: 400px) {
 		#introCover {
 			border-width: 0;

@@ -288,7 +288,7 @@
             #end
             <div class="$speaker_item_css_class" onclick="ga('send', 'event', 'LPSF - UK', 'Speaker Profile Clicks', '$htmlUtil.escape($speaker_name)');" style="background-image: url($image_src);">
 
-                <div alt="$htmlUtil.escape($speaker_name)" class="flip-side front-side" style="background-image: url($image_src);">
+                <div class="flip-side front-side" style="background-image: url($image_src);">
                     <div class="speaker-info">
                         #if ($sponsor_logo !="")
                             #set ($logo_src ="/documents/$speaker_image_groupid/$sponsor_logo_uuid")

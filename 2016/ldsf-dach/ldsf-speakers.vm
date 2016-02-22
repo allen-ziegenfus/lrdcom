@@ -75,13 +75,14 @@
     .flip-item .flip-side, .speaker-item .speaker-info {
         -moz-backface-visibility: hidden;
         -moz-transform: translate3d(0, 0, 0);
-        -ms-backface-visibility: visible;
+        
         -ms-transform: translate3d(0, 0, 0);
         -o-backface-visibility: hidden;
         -o-transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
         -webkit-transform: translate3d(0, 0, 0);
         backface-visibility: hidden;
+        -ms-backface-visibility: visible;
         bottom: 0;
         left: 0;
         max-height: 270px;
